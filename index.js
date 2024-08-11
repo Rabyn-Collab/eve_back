@@ -1,31 +1,23 @@
 import express from "express";
-
+import morgan from "morgan";
+import { userRouter } from "./routes/userRoutes.js";
 const app = express();
 const port = 5000;
 
-const numbers = [11, 22, 44, 55, 66];
+app.use(morgan('dev'));
+
+
 
 app.get('/', (req, res) => {
-  const total = numbers.reduce((a, b) => a + b);
-  return res.status(200).json({
-    data: "lios",
-    total
-  });
+  return res.status(200).json({ message: 'welcome to server' });
 });
 
 
-// products
 
-// api/products  get add
-// api/products/:id   detail update delete
+app.use('/api/users', userRouter);
 
 
 
-// allProducts
-// product/detail
-// product/add
-// product/update
-// product/delete
 
 
 app.listen(port, () => {
