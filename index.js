@@ -1,12 +1,25 @@
 import express from "express";
 import morgan from "morgan";
 import { userRouter } from "./routes/userRoutes.js";
+import mongoose from "mongoose";
 const app = express();
 const port = 5000;
 
 app.use(morgan('dev'));
 app.use(express.json());
 
+
+
+mongoose.connect('mongodb+srv://rabyn900:moles900@cluster0.ikwdezp.mongodb.net/ShopUs').then((val) => {
+
+  app.listen(port, () => {
+    console.log('connected');
+  });
+
+
+}).catch((err) => {
+  console.log(err);
+})
 
 
 app.get('/', (req, res) => {
@@ -19,9 +32,4 @@ app.use('/api/users', userRouter);
 
 
 
-
-
-app.listen(port, () => {
-  console.log('connected');
-});
 
