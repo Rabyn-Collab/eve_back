@@ -1,10 +1,14 @@
 import express from "express";
 import morgan from "morgan";
 import { userRouter } from "./routes/userRoutes.js";
+import cors from "cors";
 import mongoose from "mongoose";
+
+
 const app = express();
 const port = 5000;
 
+app.use(cors({}));
 app.use(morgan('dev'));
 app.use(express.json());
 

@@ -2,6 +2,11 @@ import { User } from "../models/User.js";
 import bcrypt from 'bcrypt';
 import Jwt from "jsonwebtoken";
 
+export const getAllUsers = async (req, res) => {
+  return res.status(200).json({ message: `all users ${req.query.data}` });
+}
+
+
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -26,7 +31,7 @@ export const loginUser = async (req, res) => {
 
 
   } catch (err) {
-
+    return res.status(400).json({ message: `${err}` });
   }
 
 }
@@ -45,6 +50,6 @@ export const registerUser = async (req, res) => {
     });
     return res.status(201).json({ message: 'user registered successfully' });
   } catch (err) {
-    return res.status(400).json({ message: `${err}` })
+    return res.status(400).json({ message: `${err}` });
   }
 }
